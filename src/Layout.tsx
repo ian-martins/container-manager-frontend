@@ -10,8 +10,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
             <SidebarProvider>
                 <AppSidebar />
-                <main>
                     <SidebarTrigger />
+                <main>
                     {children}
                 </main>
             </SidebarProvider>

@@ -6,4 +6,5 @@ export interface ContainerProps {
     onStart: (ID: string) => void;
     onStop: (ID: string) => void;
     onRemove: (ID: string) => void;
+    children?: React.ReactNode;
 }
