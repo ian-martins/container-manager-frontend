@@ -19,10 +19,14 @@ export default function Containers() {
     useEffect(() => { listarContainers().then(setContainers).finally(() => { setLoadingSkeleton(false); }) }, []);
 
     return (
-        loadingSkeleton ? (<div className="container-grid">{skeleton}{skeleton}{skeleton}{skeleton}{skeleton}</div>) :
-            (
+        loadingSkeleton ? (
+            <>
+                <div className="titles"><h1>Containers</h1></div>
+                <div className="container-grid">{skeleton}{skeleton}{skeleton}{skeleton}{skeleton}</div>
+            </>
+        ) : (
                 <>
-                    <div className="titles"><h1>Containers </h1></div>
+                    <div className="titles"><h1>Containers</h1></div>
                     <div className="container-grid">
                         {containers.map((c: any) => (
                             <ContainerCard

@@ -9,7 +9,7 @@ import React from "react"
 
 export function AppSidebar() {
     return (
-        <Sidebar>
+        <Sidebar variant="floating" >
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
@@ -18,7 +18,7 @@ export function AppSidebar() {
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
-                <SidebarGroup />
+                <SidebarGroup />    
                 <SidebarGroup />
             </SidebarContent>
             <Separator></Separator>

@@ -149,7 +149,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    padding: 30px;
+    padding: 10px;
     max-width: 75vw;
     margin: 0 auto;
 }
@@ -163,4 +163,13 @@ main{
   text-align: center;
   font-size: 35px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.breadcrumb_style{
+  margin-top: -30px;
+  margin-left: -20px;
+  margin-bottom: 30px;
+}
+.sidebartrigger {
+  margin-top: 13px;
 }
