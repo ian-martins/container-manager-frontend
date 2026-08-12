@@ -22,14 +22,14 @@ export default function Layout() {
 
     return (
         <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-            <SidebarProvider>
+            <SidebarProvider >
                 <AppSidebar />
                 <SidebarTrigger className="sidebartrigger" size="icon-lg"  />
                 <main>
                     {breadcrumb}
                     <Outlet />
                 </main>
-            </SidebarProvider>
+            </SidebarProvider>s
         </ThemeProvider>
     );
 

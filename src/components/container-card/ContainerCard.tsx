@@ -33,16 +33,15 @@ export default function ContainerCard({
                 <ItemTitle>Status:<ItemDescription>{status}</ItemDescription></ItemTitle>
                 <ItemTitle>ID:<ItemDescription>{ID}</ItemDescription></ItemTitle>
             </ItemContent>
-
             <Separator orientation="vertical" ></Separator>
-            <ItemActions>
+            <ItemActions >
                 <ButtonGroup>
                     <Button variant={"default"} onClick={() => onStart(ID)}>Start <Rocket /></Button>
                     <Button variant={"default"} onClick={() => onStop(ID)}>Stop</Button>
                 </ButtonGroup>
+            <Button variant={"destructive"} onClick={() => onRemove(ID)}>Remove <Trash2 /></Button>
             </ItemActions>
 
-            <Button variant={"destructive"} onClick={() => onRemove(ID)}>Remove <Trash2 /></Button>
         </Item>
         </Card >
     );
