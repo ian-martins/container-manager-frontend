@@ -124,10 +124,13 @@
   body {
     @apply bg-background text-foreground;
     margin: 0;
+    font-size: 1rem;
+
   }
 
   html {
     @apply font-sans;
+    font-size: 12px;
   }
 
   #root {
@@ -135,41 +138,42 @@
   }
 }
 
-.card_containers{
-    min-width: 400px;
-    padding: 15px;
-    border-radius: 12px;
-    border: var(--primary);
-    background: var(--border);
-    cursor: pointer;
-    align-items: center;
+.card_containers {
+  min-width: 400px;
+  padding: 15px;
+  border-radius: 12px;
+  border: var(--primary);
+  background: var(--border);
+  cursor: pointer;
+  align-items: center;
 }
 
 .container-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 10px;
-    max-width: 85vw;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 10px;
+  max-width: 85vw;
+  margin: 0 auto;
 }
 
-main{
+main {
   width: 100vw;
   padding: 50px;
 }
 
-.titles{
+.titles {
   text-align: center;
   font-size: 35px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.breadcrumb_style{
+.breadcrumb_style {
   margin-top: -30px;
   margin-left: -20px;
   margin-bottom: 30px;
 }
+
 .sidebartrigger {
   margin-top: 13px;
 }

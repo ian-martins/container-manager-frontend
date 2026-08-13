@@ -12,7 +12,7 @@ export default function Containers() {
     const [loadingContainers, setLoadingContainers] = useState<string[]>([]);
     const [loadingSkeleton, setLoadingSkeleton] = useState(true);
 
-    const skeleton = (<div className="flex items-center"><Skeleton className="h-33 w-135" /></div>)
+    const skeleton = (<div className="flex items-center"><Skeleton className="h-36 w-146" /></div>)
     const ready = (<CircleFadingArrowUpIcon />)
     const loading = (<div className="flex items-center gap-6"><Spinner className="size-6" /></div>)
 
@@ -22,7 +22,7 @@ export default function Containers() {
         loadingSkeleton ? (
             <>
                 <div className="titles"><h1>Containers</h1></div>
-                <div className="container-grid">{skeleton}{skeleton}{skeleton}{skeleton}{skeleton}</div>
+                <div className="container-grid">{skeleton}{skeleton}{skeleton}{skeleton}</div>
             </>
         ) : (
                 <>

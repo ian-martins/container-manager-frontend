@@ -51,7 +51,7 @@ function Home() {
 
                 <button
                     className="card"
-                    onClick={() => navigate("/home/networks")}
+                    onClick={() => navigate("/login")}
                 >
                     <h2>🌐 Networks</h2>
                     <p>Gerenciar redes Docker.</p>
