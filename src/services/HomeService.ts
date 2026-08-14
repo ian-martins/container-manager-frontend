@@ -1,27 +1,26 @@
 import { ContainerProps } from "@/components/interfaces/ContainerProps";
 import type { ContainerCreate } from "../components/interfaces/ContainerCreate";
-
-const URL = "http://localhost:9000/home";
+import { api } from "./api";
 
 export async function listarContainers(): Promise<ContainerProps[]>  {
-    const response = await fetch(`${URL}/container`);
+    const response = await api("/home/container")
     if (!response.ok) throw new Error("Erro ao listar containers");
     return await response.json();
 }
 
 export async function iniciarContainer(id: string) {
-    const response = await fetch(`${URL}/start/${id}`);
+    const response = await api(`/home/start/${id}`);
     return await response.json();
 }
 
 export async function pararContainer(id: string) {
-    const response = await fetch(`${URL}/stop/${id}`);
+    const response = await api(`/home/stop/${id}`);
     return await response.json();
-
+    
 }
 
 export async function removerContainer(id: string) {
-    const response = await fetch(`${URL}/remove/${id}`, {
+    const response = await api(`/home/remove/${id}`, {
         method: "DELETE"
     });
  
@@ -30,7 +29,7 @@ export async function removerContainer(id: string) {
 }
 
 export async function criarContainer(command: ContainerCreate) {
-    const response = await fetch(`${URL}/container/run`, {
+    const response = await api(`home/container/run`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
