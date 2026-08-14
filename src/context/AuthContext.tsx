@@ -22,7 +22,7 @@ const AuthContext = createContext<AuthContextData | undefined>(
 
 
 export function AuthProvider({ children }: AuthProviderProps) {
-
+    
     const [token, setToken] = useState<string | null>(() => {
         return localStorage.getItem("token");
     });
@@ -52,9 +52,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 }
 
 export function useAuth() {
-
     const context = useContext(AuthContext);
-
     if (!context) {
         throw new Error(
             "useAuth deve ser utilizado dentro de AuthProvider"

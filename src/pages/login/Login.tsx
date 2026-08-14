@@ -1,4 +1,4 @@
-import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet, FieldTitle, } from "../../components/ui/field"
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet, } from "../../components/ui/field"
 import React, { useState } from "react"
 import { Input } from "../../components/ui/input"
 import { CircleFadingArrowUpIcon } from "lucide-react"
@@ -6,7 +6,6 @@ import { Button } from "../../components/ui/button"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "@/context/AuthContext"
 import { login as loginRequest } from "../../services/Auth";
-import { Separator } from "@/components/ui/separator"
 
 
 export default function Login() {

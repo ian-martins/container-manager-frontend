@@ -19,7 +19,7 @@ export default function App() {
                         <Route path="/images" element={<Images />} />
                     </Route>
 
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/auth/login" element={<Login />} />
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>
