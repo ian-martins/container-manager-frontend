@@ -6,7 +6,6 @@ export async function api(
 ) {
 
     const token = localStorage.getItem("token");
-
     const headers = new Headers(options.headers);
 
     headers.set("Content-Type", "application/json");
@@ -27,11 +26,8 @@ export async function api(
     );
 
     if (response.status === 403) {
-
         localStorage.removeItem("token");
-
-        window.location.href = "/login";
-
+        window.location.href = "/home";
         throw new Error("Sessão expirada");
     }
 

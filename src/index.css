@@ -177,3 +177,19 @@ main {
 .sidebartrigger {
   margin-top: 13px;
 }
+
+.login {
+  width: min-content;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background: var(--border);
+  border-radius: 0px;
+  border: var(--primary);
+  box-shadow: 0px 0px 0px 0.5px rgb(255, 255, 255,0.26);
+}
+
+main {
+  width: 100vw;
+  padding: 50px;
+}

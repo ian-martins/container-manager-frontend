@@ -1,4 +1,4 @@
-import {
+import React, {
     createContext,
     useContext,
     useState,
@@ -12,13 +12,14 @@ interface AuthContextData {
     logout: () => void;
 }
 
+interface AuthProviderProps {
+    children: ReactNode;
+}
+
 const AuthContext = createContext<AuthContextData | undefined>(
     undefined
 );
 
-interface AuthProviderProps {
-    children: ReactNode;
-}
 
 export function AuthProvider({ children }: AuthProviderProps) {
 
