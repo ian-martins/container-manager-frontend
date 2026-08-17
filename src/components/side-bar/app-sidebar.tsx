@@ -1,68 +1,245 @@
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar, } from "@/components/ui/sidebar"
-import { Button } from "../ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
-import { Separator } from "../ui/separator"
-import { Input } from "../ui/input"
-import { CircleFadingArrowUpIcon, LogOutIcon, Settings, Settings2, User2 } from "lucide-react"
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, } from "@/components/ui/sheet"
-import React from "react"
-import { IndentBackground } from "node_modules/@base-ui/react/drawer/index.parts.mjs"
-import { Dropdown_user } from "./Dropdown_user"
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+} from "@/components/ui/sidebar";
+
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import { Separator } from "@/components/ui/separator";
+
+import {
+    Container,
+    LogIn,
+    LogOut,
+    Settings,
+    User2,
+} from "lucide-react";
+
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
+import React from "react";
+
+
 export function AppSidebar() {
-    const {
-        state,
-        open,
-        setOpen,
-        openMobile,
-        setOpenMobile,
-        isMobile,
-        toggleSidebar,
-    } = useSidebar()
-    const config = (<div style={{ "width": "100vw", "display": "flex", "gap": "12px", "margin": "5px 5px" }}><Settings /><p>     Configurações</p></div>)
+
+    const navigate = useNavigate();
+
     return (
-        <Sidebar variant="floating" >
+        <Sidebar variant="floating">
+
+            {/* Header */}
             <SidebarHeader>
-                <SidebarMenu><SidebarMenuItem></SidebarMenuItem></SidebarMenu>
+
+                <SidebarMenu>
+
+                    <SidebarMenuItem>
+
+                        <SidebarMenuButton
+                            size="lg"
+                            onClick={() => navigate("/home")}
+                        >
+
+                            <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary/10">
+                                <Container className="size-5 text-primary" />
+                            </div>
+
+                            <div className="grid flex-1 text-left text-sm leading-tight">
+                                <span className="truncate font-semibold">
+                                    Container Manager
+                                </span>
+
+                                <span className="truncate text-xs text-muted-foreground">
+                                    Docker Management
+                                </span>
+                            </div>
+
+                        </SidebarMenuButton>
+
+                    </SidebarMenuItem>
+
+                </SidebarMenu>
+
             </SidebarHeader>
-            <Separator></Separator>
 
+            <Separator />
+
+            {/* Content */}
             <SidebarContent>
-                <SidebarGroup>
-                    <SidebarMenu>
-                        <SidebarMenuItem>
-                            <SidebarMenuButton>
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger render={config}>
 
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent>
-                                        <DropdownMenuGroup>
-                                            <DropdownMenuItem>Conexões</DropdownMenuItem>
-                                        </DropdownMenuGroup>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                            </SidebarMenuButton>
+                <SidebarGroup>
+
+                    <SidebarMenu>
+
+                        <SidebarMenuItem>
+
+                            <DropdownMenu>
+
+                                <DropdownMenuTrigger >
+
+                                    <SidebarMenuButton>
+                                        <Settings />
+                                        <span>Configurações</span>
+                                    </SidebarMenuButton>
+
+                                </DropdownMenuTrigger>
+
+                                <DropdownMenuContent
+                                    side="right"
+                                    align="start"
+                                    className="w-48"
+                                >
+
+                                    <DropdownMenuGroup>
+
+                                        <DropdownMenuLabel>
+                                            Configurações
+                                        </DropdownMenuLabel>
+
+                                        <DropdownMenuItem
+                                            onClick={() =>
+                                                navigate("/auth/conexao")
+                                            }
+                                        >
+                                            <Settings />
+                                            Conexões
+                                        </DropdownMenuItem>
+
+                                    </DropdownMenuGroup>
+
+                                </DropdownMenuContent>
+
+                            </DropdownMenu>
+
                         </SidebarMenuItem>
+
                     </SidebarMenu>
+
                 </SidebarGroup>
 
             </SidebarContent>
-            <Separator></Separator>
+
+            <Separator />
+
+            {/* Footer */}
             <SidebarFooter>
+
                 <SidebarMenu>
+
                     <SidebarMenuItem>
-                        <SidebarMenuButton>
-                            <Dropdown_user>
-                            </Dropdown_user>
-                        </SidebarMenuButton>
+
+                        <DropdownUser />
+
                     </SidebarMenuItem>
+
                 </SidebarMenu>
 
             </SidebarFooter>
+
         </Sidebar>
-
-
-    )
+    );
 }
 
-/*<Button variant="default" size="default"><CircleFadingArrowUpIcon /></Button>*/
+
+function DropdownUser() {
+
+    const {
+        logout,
+        isAuthenticated,
+    } = useAuth();
+
+    const navigate = useNavigate();
+
+    function handleLogout() {
+
+        logout();
+
+        navigate("/auth/login");
+    }
+
+    return (
+
+        <DropdownMenu>
+
+            <DropdownMenuTrigger >
+
+                <SidebarMenuButton
+                    size="lg"
+                    className="w-full"
+                >
+
+                    <div className="flex size-8 items-center justify-center rounded-lg bg-muted">
+                        <User2 className="size-5" />
+                    </div>
+
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                        <span className="truncate font-medium">
+                            Username
+                        </span>
+
+                        <span className="truncate text-xs text-muted-foreground">
+                            {isAuthenticated
+                                ? "Conta conectada"
+                                : "Não autenticado"
+                            }
+                        </span>
+                    </div>
+
+                </SidebarMenuButton>
+
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent
+                side="right"
+                align="end"
+                className="w-56"
+            >
+
+                <DropdownMenuGroup>
+
+                    <DropdownMenuLabel>
+                        Minha Conta
+                    </DropdownMenuLabel>
+
+                    {isAuthenticated ? (
+
+                        <DropdownMenuItem
+                            variant="destructive"
+                            onClick={handleLogout}
+                        >
+                            <LogOut />
+                            Sair
+                        </DropdownMenuItem>
+
+                    ) : (
+
+                        <DropdownMenuItem
+                            onClick={() =>
+                                navigate("/auth/login")
+                            }
+                        >
+                            <LogIn />
+                            Entrar
+                        </DropdownMenuItem>
+
+                    )}
+
+                </DropdownMenuGroup>
+
+            </DropdownMenuContent>
+
+        </DropdownMenu>
+    );
+}
