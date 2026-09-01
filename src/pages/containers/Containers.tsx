@@ -1,17 +1,10 @@
 import ContainerCard from "@/components/container-card/ContainerCard";
-import {
-    iniciarContainer,
-    listarContainers,
-    pararContainer,
-    removerContainer,
-} from "@/services/HomeService";
-
+import { iniciarContainer, listarContainers, pararContainer, removerContainer, } from "@/services/HomeService"; 
 import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 
 import React, { useEffect, useState } from "react";
 import { CircleFadingArrowUpIcon } from "lucide-react";
-
 import { ContainerProps } from "@/components/interfaces/ContainerProps";
 
 export default function Containers() {

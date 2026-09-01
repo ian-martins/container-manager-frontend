@@ -26,23 +26,21 @@ export default function ContainerCard({
                 <ItemMedia variant="icon">
                     <Icon iconNode={[]} />
                 </ItemMedia>
-              
-            <ItemContent>
-                <ItemTitle className="text-lg">{nome}</ItemTitle>
-                <ItemTitle>Imagem:<ItemDescription>{imagem}</ItemDescription></ItemTitle>
-                <ItemTitle>Status:<ItemDescription>{status}</ItemDescription></ItemTitle>
-                <ItemTitle>ID:<ItemDescription>{ID}</ItemDescription></ItemTitle>
-            </ItemContent>
-            <Separator orientation="vertical" ></Separator>
-            <ItemActions >
-                <ButtonGroup>
-                    <Button variant={"default"} onClick={() => onStart(ID)}>Start <Rocket /></Button>
-                    <Button variant={"default"} onClick={() => onStop(ID)}>Stop</Button>
-                </ButtonGroup>
-            <Button variant={"destructive"} onClick={() => onRemove(ID)}>Remove <Trash2 /></Button>
-            </ItemActions>
-
-        </Item>
+                <ItemContent>
+                    <ItemTitle className="text-lg">{nome}</ItemTitle>
+                    <ItemTitle>Imagem:<ItemDescription>{imagem}</ItemDescription></ItemTitle>
+                    <ItemTitle>Status:<ItemDescription>{status}</ItemDescription></ItemTitle>
+                    <ItemTitle>ID:<ItemDescription>{ID}</ItemDescription></ItemTitle>
+                </ItemContent>
+                <Separator orientation="vertical" ></Separator>
+                <ItemActions >
+                    <ButtonGroup>
+                        <Button variant={"default"} onClick={() => onStart(ID)}>Start <Rocket /></Button>
+                        <Button variant={"default"} onClick={() => onStop(ID)}>Stop</Button>
+                    </ButtonGroup>
+                    <Button variant={"destructive"} onClick={() => onRemove(ID)}>Remove <Trash2 /></Button>
+                </ItemActions>
+            </Item>
         </Card >
     );
 }

@@ -6,7 +6,7 @@ import Login from "./pages/login/Login";
 import Containers from "./pages/containers/Containers"
 import Images from "./pages/images/Images";
 import { ThemeProvider } from "@/components/theme-provider"
-import Conect from "./pages/conexoes/Conect";
+import Connection from "./pages/conexoes/Connection";
 import { Welcome } from "./pages/home/Welcome";
 
 export default function App() {
@@ -19,9 +19,9 @@ export default function App() {
                         <Route path="/home" element={<Home />} />
                         <Route path="/home/containers" element={<Containers />} />
                         <Route path="/images" element={<Images />} />
+                        <Route path="/home/conexao" element={<Connection />} />
                     </Route>
                     <Route path="/" element={<Welcome />} />
-                    <Route path="/auth/conexao" element={<Conect />} />
                     <Route path="/auth/login" element={<Login />} />
                 </Routes>
             </BrowserRouter>

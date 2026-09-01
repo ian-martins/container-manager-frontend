@@ -236,3 +236,15 @@ main {
 .card p {
     text-align: left;
 }
+
+/** pages/conexoes/Connection.tsx */
+/** conn */
+.conn_principal{
+  background-color: rgb(255, 255, 255,0.05);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.conn_btVoltar{
+  margin: 5px;
+}
