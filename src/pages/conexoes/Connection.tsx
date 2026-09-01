@@ -9,14 +9,15 @@ import { ArrowLeftIcon, MoreHorizontalIcon } from "lucide-react"
 import { useNavigate } from "react-router-dom";
 import { listarConnection, newConnection, activeconn } from "@/services/ConnectionsService";
 import { Connection } from "@/components/interfaces/Connection"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function CadastrarConnection() {
     const navigate = useNavigate();
     const [connections, setConnection] = useState<Connection[]>([]);
 
-    const [desc, setName] = useState("");
+    const [name, setName] = useState("");
     const [host, setHost] = useState("");
-    const [port, setPort] = useState<number | "">("");
+    const [port, setPort] = useState("");
     const [wsl, setWsl] = useState(false);
 
     useEffect(() => {
@@ -25,6 +26,7 @@ export default function CadastrarConnection() {
 
     async function carregarConnections() {
         try {
+console.log("ola")
             const data = await listarConnection();
             console.log("Connections recebidas:", data);
 
@@ -34,16 +36,15 @@ export default function CadastrarConnection() {
         }
     }
 
-
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
 
         try {
             await newConnection({
-                desc,
+                name,
                 host,
                 port,
-                wsl
+                wsl,
             });
 
             navigate("/home");
@@ -51,44 +52,6 @@ export default function CadastrarConnection() {
             console.error("Erro ao criar conexão:", error);
         }
     }
-
-    const novaConn = (<div className="login" >
-        <form onSubmit={handleSubmit}>
-            <FieldSet className="w-100 max-w-lg">
-                <FieldGroup>
-                    <Field>
-                        <FieldLabel htmlFor="username">Nome</FieldLabel>
-                        <Input type="text" value={desc} onChange={(event) => setName(event.target.value)} />
-                    </Field>
-                    <Field>
-                        <FieldLabel htmlFor="password">Host</FieldLabel>
-                        <Input type="text" value={host} onChange={(event) => setHost(event.target.value)} />
-                    </Field>
-                    <Field>
-                        <FieldLabel htmlFor="password">Port</FieldLabel>
-                        <Input
-                            type="number"
-                            min="1"
-                            max="65535"
-                            value={port}
-                            onChange={(event) => {
-                                const value = event.target.value;
-                                setPort(value === "" ? "" : Number(value));
-                            }}
-                            className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                        /></Field>
-                    <Field orientation="horizontal">
-                        <Checkbox id="wsl" checked={wsl} onCheckedChange={(checked) => setWsl(checked === true)} />
-                        <FieldLabel htmlFor="wsl">
-                            WSL
-                        </FieldLabel>
-                    </Field>
-                    <Button variant="default" size="default" type="submit" >Conectar</Button>
-                </FieldGroup>
-            </FieldSet>
-        </form>
-    </div>
-    )
 
     function actions(connection: Connection) {
         return (
@@ -152,77 +115,85 @@ export default function CadastrarConnection() {
         console.log("Excluir:", connection);
     }
 
+    const novaConn = (<div className="login" >
+        <form onSubmit={handleSubmit}>
+            <FieldSet className="w-100 max-w-lg">
+                <FieldGroup>                         
+                    <Field><FieldLabel>Nome</FieldLabel><Input type="text" value={name}                       onChange={(event) => setName(event.target.value)} /></Field>
+                    <Field><FieldLabel>Host</FieldLabel><Input type="text" value={host}                       onChange={(event) => setHost(event.target.value)} /></Field>
+                    <Field><FieldLabel>Port</FieldLabel><Input type="number" min="0" max="65535" value={port} onChange={(event) => setPort(event.target.value)}
+                        className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"/></Field>
+                    <Field orientation="horizontal">
+                        <Checkbox id="wsl" checked={wsl} onCheckedChange={(checked) => setWsl(checked === true)} />
+                        <FieldLabel htmlFor="wsl">
+                            WSL
+                        </FieldLabel>
+                    </Field>
+                    <Button variant="default" size="default" type="submit" >Conectar</Button>
+                </FieldGroup>
+            </FieldSet>
+        </form>
+    </div>
+    )
+
     return (
         <>
-                <div className="conn_btVoltar" onClick={() => navigate("/home")} >
-                    <Button variant="outline" size="lg">
-                        <ArrowLeftIcon />
-                        Voltar
-                    </Button>
+            <Tabs defaultValue="overview" className="w-[600px]">
+                <TabsList variant="line">
+                    <TabsTrigger value="overview">Conexões</TabsTrigger>
+                    <TabsTrigger value="adicionar">Adicionar</TabsTrigger>
+                </TabsList>
+                <TabsContent value="overview">
 
-                </div>
-                <div className="conn_principal">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Descrição</TableHead>
-                                <TableHead>Host</TableHead>
-                                <TableHead>Porta</TableHead>
-                                <TableHead>WSL</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead className="text-right">Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {connections.map((connection) => (
-                                <TableRow key={connection.id}
-                                    className={
-                                        connection.active
-                                            ? "bg-green-50 dark:bg-green-950/30 border-l-4 border-l-green-500"
-                                            : ""
-                                    }>
-                                    <TableCell className="font-medium">
-                                        {connection.desc}
-                                    </TableCell>
-
-                                    <TableCell>
-                                        {connection.host}
-                                    </TableCell>
-
-                                    <TableCell>
-                                        {connection.port}
-                                    </TableCell>
-
-                                    <TableCell>
-                                        {connection.wsl ? "Sim" : "Não"}
-                                    </TableCell>
-
-                                    <TableCell>
-                                        {connection.active ? (
-                                            <div className="flex items-center gap-2">
-                                                <span className="size-2 rounded-full bg-green-500" />
-                                                <span className="font-medium text-green-600">
-                                                    Ativo
-                                                </span>
-                                            </div>
-                                        ) : (
-                                            <div className="flex items-center gap-2">
-                                                <span className="size-2 rounded-full bg-gray-400" />
-                                                <span className="text-muted-foreground">
-                                                    Inativo
-                                                </span>
-                                            </div>
-                                        )}
-                                    </TableCell>
-
-                                    <TableCell className="text-right">
-                                        {actions(connection)}
-                                    </TableCell>
+                    <div className="conn_principal">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Descrição</TableHead>
+                                    <TableHead>Host</TableHead>
+                                    <TableHead>Porta</TableHead>
+                                    <TableHead>WSL</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead className="text-right">Actions</TableHead>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </div>
+                            </TableHeader>
+                            <TableBody>
+                                {connections.map((connection) => (
+                                    <TableRow key={connection.id}
+                                        className={connection.active ? "bg-green-50 dark:bg-purple-950/30 border-l-4 border-l-purple-500" : ""}>
+                                        <TableCell className="font-medium">{connection.name}</TableCell>
+                                        <TableCell>{connection.host}</TableCell>
+                                        <TableCell>{connection.port}</TableCell>
+                                        <TableCell>{connection.wsl ? "Sim" : "Não"}</TableCell>
+                                        <TableCell>
+                                            {connection.active ? (
+                                                <div className="flex items-center gap-2">
+                                                    <span className="size-2 rounded-full bg-purple-500" />
+                                                    <span className="font-medium text-purple-600">
+                                                        Ativo
+                                                    </span>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-2">
+                                                    <span className="size-2 rounded-full bg-gray-400" />
+                                                    <span className="text-muted-foreground">
+                                                        Inativo
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </TableCell>
+
+                                        <TableCell className="text-right">
+                                            {actions(connection)}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
+                </TabsContent>
+                <TabsContent value="adicionar">{novaConn}</TabsContent>
+            </Tabs>
         </>
 
     );

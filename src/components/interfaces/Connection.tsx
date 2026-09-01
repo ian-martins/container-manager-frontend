@@ -1,8 +1,8 @@
 export interface Connection {
-    id: string;
-    desc: string;
+    id:   string;
+    name: string;
     host: string;
-    port: number;
+    port: string;
     wsl: boolean;
     active: boolean;
 }

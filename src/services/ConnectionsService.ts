@@ -7,15 +7,20 @@ export async function listarConnection(): Promise<Connection[]> {
     return await response.json();
 }
 
-export async function newConnection(conn: Connection) {
+export async function newConnection(conn: { name: string; host: string; port: string; wsl: boolean; } )  {
+
+    if(conn.port == null && conn.host == null){
+        conn.wsl = true;
+    }
+
     const response = await api(`/connection/new`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-
         body: JSON.stringify(conn)
     });
+
 
     return await response.json();
 }
