@@ -10,12 +10,13 @@ import { ContainerProps } from "../interfaces/ContainerProps";
 
 export default function ContainerCard({
     ID,
-    nome,
-    imagem,
-    status,
+    Names,
+    Image,
+    Status,
     onStart,
     onStop,
     onRemove,
+    onEdit,
     children
 }: ContainerProps) {
 
@@ -26,10 +27,10 @@ export default function ContainerCard({
                 <ItemMedia variant="icon">
                     <Icon iconNode={[]} />
                 </ItemMedia>
-                <ItemContent>
-                    <ItemTitle className="text-lg">{nome}</ItemTitle>
-                    <ItemTitle>Imagem:<ItemDescription>{imagem}</ItemDescription></ItemTitle>
-                    <ItemTitle>Status:<ItemDescription>{status}</ItemDescription></ItemTitle>
+                <ItemContent className="group cursor-pointer transition-all hover:-translate-y-1"  onClick={() => onEdit(ID)}>
+                    <ItemTitle className="text-lg">{Names}</ItemTitle>
+                    <ItemTitle>Imagem:<ItemDescription>{Image}</ItemDescription></ItemTitle>
+                    <ItemTitle>Status:<ItemDescription>{Status}</ItemDescription></ItemTitle>
                     <ItemTitle>ID:<ItemDescription>{ID}</ItemDescription></ItemTitle>
                 </ItemContent>
                 <Separator orientation="vertical" ></Separator>

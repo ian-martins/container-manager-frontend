@@ -109,13 +109,9 @@ export default function Containers() {
     async function handleRemove(id: string) {
 
         try {
-
             setContainerLoading(id, true);
-
             const response = await removerContainer(id);
-
             if (response.result) {
-
                 setContainers((prev) =>
                     prev.filter(
                         (container) => container.ID !== id
@@ -138,6 +134,10 @@ export default function Containers() {
             setContainerLoading(id, false);
 
         }
+    }
+
+    async function handleEdit(id: string){
+        console.log("clickado")
     }
 
     if (loadingSkeleton) {
@@ -180,12 +180,13 @@ export default function Containers() {
                         <ContainerCard
                             key={container.ID}
                             ID={container.ID}
-                            nome={container.Names}
-                            imagem={container.Image}
-                            status={container.Status}
+                            Names={container.Names}
+                            Image={container.Image}
+                            Status={container.Status}
                             onStart={handleStart}
                             onStop={handleStop}
                             onRemove={handleRemove}
+                            onEdit={handleEdit}
                         >
                             {isLoading ? (
                                 <div className="flex items-center">

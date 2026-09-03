@@ -26,7 +26,7 @@ export async function api(
     );
 
     if (response.status === 403) {
-        localStorage.removeItem("token");
+        
         window.location.href = "/home";
         throw new Error("Sessão expirada");
     }
