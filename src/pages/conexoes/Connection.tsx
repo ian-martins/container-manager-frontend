@@ -7,7 +7,7 @@ import { Input } from "../../components/ui/input"
 import { Button } from "../../components/ui/button"
 import { ArrowLeftIcon, MoreHorizontalIcon } from "lucide-react"
 import { useNavigate } from "react-router-dom";
-import { listarConnection, newConnection, activeconn } from "@/services/ConnectionsService";
+import { listarConnection, newConnection, activeconn, deleteConnection } from "@/services/ConnectionsService";
 import { Connection } from "@/components/interfaces/Connection"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -26,7 +26,7 @@ export default function CadastrarConnection() {
 
     async function carregarConnections() {
         try {
-console.log("ola")
+            console.log("ola")
             const data = await listarConnection();
             console.log("Connections recebidas:", data);
 
@@ -47,7 +47,7 @@ console.log("ola")
                 wsl,
             });
 
-            navigate("/home");
+            navigate("/home/conexao");
         } catch (error) {
             console.error("Erro ao criar conexão:", error);
         }
@@ -75,9 +75,7 @@ console.log("ola")
                     <DropdownMenuItem onClick={() => handleActive(connection)}>
                         Conectar
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleEdit(connection)}>
-                        Editar
-                    </DropdownMenuItem>
+                
                     <DropdownMenuSeparator />
 
                     <DropdownMenuItem
@@ -111,18 +109,29 @@ console.log("ola")
         }
     }
 
-    function handleDelete(connection: Connection) {
-        console.log("Excluir:", connection);
+    async function handleDelete(connection: Connection) {
+        try {
+            console.log("Excluir:", connection.id);
+            await deleteConnection(connection.id);
+            console.log("Carregando novos conn's",);
+            await carregarConnections();
+
+        } catch (error) {
+            console.error(
+                "Erro ao ativar:",
+                error
+            )
+        }
     }
 
     const novaConn = (<div className="login" >
         <form onSubmit={handleSubmit}>
             <FieldSet className="w-100 max-w-lg">
-                <FieldGroup>                         
-                    <Field><FieldLabel>Nome</FieldLabel><Input type="text" value={name}                       onChange={(event) => setName(event.target.value)} /></Field>
-                    <Field><FieldLabel>Host</FieldLabel><Input type="text" value={host}                       onChange={(event) => setHost(event.target.value)} /></Field>
+                <FieldGroup>
+                    <Field><FieldLabel>Nome</FieldLabel><Input type="text" value={name} onChange={(event) => setName(event.target.value)} /></Field>
+                    <Field><FieldLabel>Host</FieldLabel><Input type="text" value={host} onChange={(event) => setHost(event.target.value)} /></Field>
                     <Field><FieldLabel>Port</FieldLabel><Input type="number" min="0" max="65535" value={port} onChange={(event) => setPort(event.target.value)}
-                        className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"/></Field>
+                        className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" /></Field>
                     <Field orientation="horizontal">
                         <Checkbox id="wsl" checked={wsl} onCheckedChange={(checked) => setWsl(checked === true)} />
                         <FieldLabel htmlFor="wsl">

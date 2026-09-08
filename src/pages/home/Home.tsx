@@ -35,19 +35,19 @@ function Home() {
             title: "Imagens",
             description: "Visualizar e gerenciar imagens Docker.",
             icon: Image,
-            path: "/home/images",
+            path: "/home",
         },
         {
             title: "Baixar Imagem",
             description: "Realizar pull de uma imagem do Docker Hub.",
             icon: Download,
-            path: "/home/image/pull",
+            path: "/home",
         },
         {
             title: "Volumes",
             description: "Gerenciar volumes utilizados pelos containers.",
             icon: HardDrive,
-            path: "/home/volumes",
+            path: "/home",
         },
         {
             title: "Networks",

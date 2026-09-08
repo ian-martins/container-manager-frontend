@@ -45,3 +45,21 @@ export async function activeconn(id: string): Promise<string> {
     return await response.text();
 
 }
+
+export async function deleteConnection(id: string): Promise<string> {
+
+    const response = await api(`/connection/delete/` + id, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({id,} satisfies activeconn),}
+    );
+
+    if (!response.ok) {
+        throw new Error("erro");
+    }
+
+    return await response.text();
+
+}

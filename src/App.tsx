@@ -8,6 +8,7 @@ import Images from "./pages/images/Images";
 import { ThemeProvider } from "@/components/theme-provider"
 import Connection from "./pages/conexoes/Connection";
 import { Welcome } from "./pages/home/Welcome";
+import NewContainers from "./pages/containers/NewConntainer";
 
 export default function App() {
 
@@ -18,6 +19,7 @@ export default function App() {
                     <Route element={<Layout />}>
                         <Route path="/home" element={<Home />} />
                         <Route path="/home/containers" element={<Containers />} />
+                        <Route path="/home/containers/create" element={<NewContainers />} />
                         <Route path="/images" element={<Images />} />
                         <Route path="/home/conexao" element={<Connection />} />
                     </Route>

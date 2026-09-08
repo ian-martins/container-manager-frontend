@@ -29,7 +29,7 @@ export async function removerContainer(id: string) {
 }
 
 export async function criarContainer(command: ContainerCreate) {
-    const response = await api(`home/container/run`, {
+    const response = await api(`/home/container/run`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
