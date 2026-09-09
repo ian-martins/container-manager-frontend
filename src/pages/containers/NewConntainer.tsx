@@ -12,6 +12,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 interface Environment { key: string; value: string; }
 interface Port { host: string; container: string; }
@@ -55,6 +57,8 @@ export default function NewContainers() {
 
         image: "",
     });
+
+    const [salvarComando, setSalvarComando] = useState(false);
 
     const navigate = useNavigate();
     const [environmentKey, setEnvironmentKey] = useState("");
@@ -928,34 +932,25 @@ export default function NewContainers() {
                                 </h2>
 
                                 <code className="block rounded-md bg-black p-4 text-sm text-white overflow-x-auto">
-
                                     docker run
                                     {" "}
-
                                     {container.detached && "-d "}
                                     {container.interactive && "-i "}
                                     {container.tty && "-t "}
                                     {container.remove && "--rm "}
-
-                                    {container.name &&
-                                        `--name ${container.name} `}
-
-                                    {container.ports.map(port =>
-                                        `-p ${port.host}:${port.container} `
-                                    )}
-
-                                    {container.environments.map(env =>
-                                        `-e ${env.key}=${env.value} `
-                                    )}
-
-                                    {container.volumes.map(volume =>
-                                        `-v ${volume} `
-                                    )}
-
+                                    {container.name && `--name ${container.name} `}
+                                    {container.ports.map(port => `-p ${port.host}:${port.container} `)}
+                                    {container.environments.map(env => `-e ${env.key}=${env.value} `)}
+                                    {container.volumes.map(volume => `-v ${volume} `)}
                                     {container.image || "IMAGE"}
-
                                 </code>
-
+                                <br />
+                                <div className="flex items-center space-x-2">
+                                    <Switch id="airplane-mode"
+                                        checked={salvarComando}
+                                        onCheckedChange={setSalvarComando} />
+                                    <Label htmlFor="airplane-mode">salvar</Label>
+                                </div>
                             </div>
 
 
@@ -970,27 +965,12 @@ export default function NewContainers() {
                                     variant="outline"
                                     onClick={() => {
                                         setContainer({
-                                            detached: true,
-                                            interactive: false,
-                                            remove: false,
-                                            tty: true,
-
-                                            name: "",
-                                            cpus: "",
-                                            memory: "",
-                                            timeout: "",
-                                            signal: "",
-
-                                            environments: [],
-                                            ports: [],
-
-                                            volumes: [],
-                                            mounts: [],
-
+                                            detached: true, interactive: false, remove: false, tty: true,
+                                            name: "", cpus: "", memory: "", timeout: "", signal: "",
+                                            environments: [], ports: [], volumes: [], mounts: [],
                                             image: "",
                                         });
-                                    }}
-                                >
+                                    }}>
                                     Limpar
                                 </Button>
 
@@ -1018,7 +998,7 @@ export default function NewContainers() {
                         </TableBody>
                     </Table>
                 </TabsContent>
-              </Tabs>
+            </Tabs>
 
         </>
     );
