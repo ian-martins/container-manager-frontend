@@ -5,8 +5,6 @@ interface LoginRequest {
     password: string;
 }
 
-
-
 export async function login(
     username: string,
     password: string
@@ -24,7 +22,7 @@ export async function login(
     });
 
     if (!response.ok) {
-        throw new Error("Usuário ou senha inválidos");
+        throw new Error("Usuário ou senha inválidos: ");
     }
 
     return await response.text();

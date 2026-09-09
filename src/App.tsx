@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Connection from "./pages/conexoes/Connection";
 import { Welcome } from "./pages/home/Welcome";
 import NewContainers from "./pages/containers/NewConntainer";
+import Terminal from "./pages/terminal/Terminal";
 
 export default function App() {
 
@@ -22,6 +23,7 @@ export default function App() {
                         <Route path="/home/containers/create" element={<NewContainers />} />
                         <Route path="/images" element={<Images />} />
                         <Route path="/home/conexao" element={<Connection />} />
+                        <Route path="/home/terminal" element={<Terminal />} />
                     </Route>
                     <Route path="/" element={<Welcome />} />
                     <Route path="/auth/login" element={<Login />} />

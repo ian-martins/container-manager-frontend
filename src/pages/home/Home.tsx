@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 import {
     Container,
-    Database,
     HardDrive,
     Image,
     Network,
     Plus,
     Download,
     ArrowRight,
+    Terminal,
 } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -29,7 +29,7 @@ function Home() {
             title: "Novo Container",
             description: "Criar um novo container Docker.",
             icon: Plus,
-            path: "/home/container/create",
+            path: "/home/containers/create",
         },
         {
             title: "Imagens",
@@ -129,7 +129,7 @@ function Home() {
                     <div className="flex items-center gap-4">
 
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                            <Database className="h-6 w-6 text-primary" />
+                            <Terminal className="h-6 w-6 text-primary" />
                         </div>
 
                         <div>
@@ -139,7 +139,7 @@ function Home() {
 
                             <p className="text-sm text-muted-foreground">
                                 Gerencie todos os recursos do seu ambiente
-                                através do painel.
+                                através do prompt.
                             </p>
                         </div>
 
@@ -147,9 +147,9 @@ function Home() {
 
                     <button
                         className="flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                        onClick={() => navigate("/home/containers")}
+                        onClick={() => navigate("/home/terminal")}
                     >
-                        Ver containers
+                        Terminal
                         <ArrowRight className="h-4 w-4" />
                     </button>
 
