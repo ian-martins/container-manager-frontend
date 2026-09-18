@@ -228,6 +228,7 @@ export default function NewContainers() {
             interactive: container.interactive,
             remove: container.remove,
             tty: container.tty,
+            save: salvarComando,
 
             name: container.name,
             cpus: container.cpus,
@@ -251,8 +252,7 @@ export default function NewContainers() {
 
         try {
             const response = await criarContainer(payload);
-
-            console.log("Container criado:", response);
+            console.log(response.text);
         } catch (error) {
             console.error("Erro ao criar container:", error);
         }
@@ -946,10 +946,10 @@ export default function NewContainers() {
                                 </code>
                                 <br />
                                 <div className="flex items-center space-x-2">
-                                    <Switch id="airplane-mode"
+                                    <Switch id="save"
                                         checked={salvarComando}
                                         onCheckedChange={setSalvarComando} />
-                                    <Label htmlFor="airplane-mode">salvar</Label>
+                                    <Label htmlFor="save">salvar</Label>
                                 </div>
                             </div>
 

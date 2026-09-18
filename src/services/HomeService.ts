@@ -37,5 +37,5 @@ export async function criarContainer(command: ContainerCreate) {
         body: JSON.stringify(command)
     });
 
-    return await response.json();
+    return await response
 }

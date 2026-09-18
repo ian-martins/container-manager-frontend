@@ -3,6 +3,7 @@ export interface ContainerCreate {
     interactive: boolean;
     remove: boolean;
     tty: boolean;
+    save: boolean;
 
     name: string;
     cpus: string;
