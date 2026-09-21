@@ -74,7 +74,7 @@ export function AppSidebar() {
                                         <DropdownMenuLabel>
                                             Configurações
                                         </DropdownMenuLabel>
-                                        <DropdownMenuItem onClick={() =>navigate("/home/conexao")}>
+                                        <DropdownMenuItem onClick={() =>navigate("/conexao")}>
                                             <Settings />
                                             Conexões
                                         </DropdownMenuItem>
@@ -87,15 +87,7 @@ export function AppSidebar() {
                 <SidebarGroup>
                     <SidebarMenu>
                         <SidebarMenuItem>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger className="w-50" ><SidebarMenuButton><Settings /><span>Usuario</span></SidebarMenuButton></DropdownMenuTrigger>
-                                <DropdownMenuContent side="right" align="start" className="w-48">
-                                    <DropdownMenuGroup>
-                                        <DropdownMenuLabel>Configurações</DropdownMenuLabel>
-                                        <DropdownMenuItem onClick={() =>navigate("/")}><Settings />Conexões</DropdownMenuItem>
-                                    </DropdownMenuGroup>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
+                            <SidebarMenuButton  onClick={() =>navigate("/usuarios")}><Settings /><span>Usuarios</span></SidebarMenuButton> 
                         </SidebarMenuItem>
                     </SidebarMenu>
                 </SidebarGroup>

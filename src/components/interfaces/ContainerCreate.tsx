@@ -1,4 +1,4 @@
-export interface ContainerCreate {
+export interface UsuariosProps {
     detached: boolean;
     interactive: boolean;
     remove: boolean;
@@ -19,5 +19,5 @@ export interface ContainerCreate {
     image: string;
 }
 
-export default ContainerCreate 
+export default UsuariosProps 
 
