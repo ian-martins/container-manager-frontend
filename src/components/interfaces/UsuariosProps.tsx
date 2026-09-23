@@ -1,8 +1,9 @@
 export interface UsuariosProps {
     id: string;
-    dockerHost: string;
+    username: string;  
+    dockerHostId: string;
+    hostName: string;
     role: string;
-    name: string;  
 }
 
 export default UsuariosProps 
